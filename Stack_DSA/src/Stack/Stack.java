@@ -1,35 +1,34 @@
 package Stack;
 
 public class Stack {
-	int s[] = new int[10];
+	 
+	int a[] = new int[10];
 	int tos;
 	
-	Stack() {
+	public Stack() {
 		tos = -1;
+		
 	}
 	
-	void push(int item) {
-		if(tos == 9) {
-			System.out.println("The Satck is Full");
-		} else {
-			s[++tos] = item;
-		}
+	public void push(int i) {
+//		tos = tos + 1;
+//		a[tos] = i;
+		
+		if(tos == 9)
+			System.out.println("Stack is Full");
+		else 
+			a[++tos] = i;
+		
 	}
 	
-	int pop() {
-		if(tos >= 0) {
-			return s[tos--];
-			
-		} else {
-			System.out.println("The Stack is Empty");
+	public int pop() {
+		if(tos >= 0)
+			return a[tos--];
+		else
+			System.out.println("Stack is Empty");
 			return -1;
-		}
-	}
-
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	
 }
+	
