@@ -5,7 +5,7 @@ public class Demo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		QueueUsingArrays q = new QueueUsingArrays();
+		QueueUsingArrays2 q = new QueueUsingArrays2();
 		q.enqueue(5);
 		q.enqueue(8);
 		q.enqueue(9);
