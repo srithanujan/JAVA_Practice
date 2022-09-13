@@ -1,113 +1,133 @@
 package LinkedList;
 
+import java.util.Iterator;
 
-
-public class LinkedList {
+public class LinkedList<T> implements Iterable<T>{
 	Node head;
 	
 	class Node {
-		int data;
+		T data;
 		Node next;
 		
-		Node(int val) {
+		Node(T val) {
 			data = val;
-			head = null;
+			next = null;
+			
+			
+			
 		}
 		
+		
 	}
-
 	
-	
-	LinkedList() {
+	public LinkedList() {
 		head = null;
 		
 	}
 	
-	
-	public void insertAtBegining(int val) {
+	public void insertAtBegining(T val) {
 		Node newNode = new Node(val);
-		
 		if(head == null)
-			newNode = head;
-		else
+			head = newNode;
+		else {
 			newNode.next = head;
 			head = newNode;
-		
-		
+		}
+		   
+    	
 	}
-		
-		
-	
 	
 	public void display() {
 		Node temp = head;
-		while(head != null) {
+		while(temp != null) {
 			System.out.print(temp.data + " ");
-		     temp = temp.next;
-
+			temp = temp.next;
+		
 		}
-		
-		
-			
-		
-		
 		
 	}
 	
-	public void insertAtPos(int pos, int val) {
-		if(pos == 0)
-		{
-			insertAtBegining(val);
-			return;
-		}
+	public void insertAtPos(int pos, T val) {
 		Node newNode = new Node(val);
 		Node temp = head;
-		
-		for(int i = 1; i < pos; i++) {
-			temp = temp.next;
-			if(temp == null) {
-				throw new IllegalArgumentException("Invalid Pos " + pos);
-			}
+		if(pos == 0) {
+			
+			insertAtBegining(val);
 			
 		}
-		
+		for(int i = 1; i< pos;i++) {
+			
+			temp = temp.next;
+			if(temp == null) {
+				
+				throw new IndexOutOfBoundsException("Invalid Pos " + pos);
+			}
+			
+			
+			
+		}
 		newNode.next = temp.next;
 		temp.next = newNode;
-			
 		
 		
 	}
 	
+	
 	public void deleteAtPos(int pos) {
-		if(head == null) 
+		if(head == null) {
+			
 			throw new IndexOutOfBoundsException("Deletion Attempted on Empty List");
+		}
 		
 		if(pos == 0) {
 			head = head.next;
-		    return;
-		    
+			return;
 		}
-		
 		
 		Node temp = head;
 		Node prev = null;
 		
-		for(int i = 1; i <= pos; i++) {
+		for(int i = 1;i<=pos;i++) {
+			
 			prev = temp;
 			temp = temp.next;
-			
 		}
 		
 		prev.next = temp.next;
 		
 	}
 	
-	public void deleteAtBegining() {
-		if(head == null) 
+	public void deleteAtBeginning() {
+		
+        if(head == null) {
+			
 			throw new IndexOutOfBoundsException("Deletion Attempted on Empty List");
+			
+		}
+        
+        head = head.next;
 		
+	}
+	
+	
+	public Iterator<T> iterator() {
+		return new Iterator<T>() {
+			Node temp = head;
+			
+		public boolean hasNext() {
+				return temp!= null;
+				
+			}
 		
-		    head = head.next;
+		public T next() {
+			T val = temp.data;
+			temp = temp.next;
+			return val;
+			
+			
+		}
+			
+		};
 	}
 	
 }
